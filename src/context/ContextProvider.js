@@ -1,7 +1,7 @@
 import {
     createContext,
     useContext,
-    // useEffect,
+    useEffect,
     useReducer,
     // useRef,
   } from 'react';
@@ -34,12 +34,12 @@ import {
     const [state, dispatch] = useReducer(reducer, initialState);
     // const mapRef = useRef();
     // const containerRef = useRef();
-    // useEffect(() => {
-    //   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    //   if (currentUser) {
-    //     dispatch({ type: 'UPDATE_USER', payload: currentUser });
-    //   }
-    // }, []);
+    useEffect(() => {
+      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      if (currentUser) {
+        dispatch({ type: 'UPDATE_USER', payload: currentUser });
+      }
+    }, []);
     return (
       // <Context.Provider value={{ state, dispatch, mapRef, containerRef }}>
       <Context.Provider value={{ state, dispatch}}>
