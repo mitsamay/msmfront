@@ -3,7 +3,7 @@ import { Avatar, Badge, Box, IconButton, Tooltip } from '@mui/material';
 import React, { useState } from 'react';
 import { useValue } from '../../context/ContextProvider';
 // import useCheckToken from '../../hooks/useCheckToken';
-// import UserMenu from './UserMenu';
+import UserMenu from './UserMenu';
 
 const UserIcons = () => {
   // useCheckToken();
@@ -11,7 +11,7 @@ const UserIcons = () => {
     state: { currentUser },
   } = useValue();
 
-  // const [anchorUserMenu, setAnchorUserMenu] = useState(null);
+  const [anchorUserMenu, setAnchorUserMenu] = useState(null);
 
   return (
     <Box>
@@ -26,14 +26,13 @@ const UserIcons = () => {
         </Badge>
       </IconButton>
       <Tooltip title="Open User Settings">
-        {/* <IconButton onClick={(e) => setAnchorUserMenu(e.currentTarget)}> */}
-        <IconButton>
+        <IconButton onClick={(e) => setAnchorUserMenu(e.currentTarget)}>
           <Avatar src={currentUser?.photoURL} alt={currentUser?.name}>
             {currentUser?.name?.charAt(0).toUpperCase()}
           </Avatar>
         </IconButton>
       </Tooltip>
-      {/* <UserMenu {...{ anchorUserMenu, setAnchorUserMenu }} /> */}
+      <UserMenu {...{ anchorUserMenu, setAnchorUserMenu }} />
     </Box>
   );
 };
