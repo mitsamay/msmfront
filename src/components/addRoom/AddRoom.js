@@ -1,4 +1,4 @@
-import { Send } from '@mui/icons-material';
+// import { Send } from '@mui/icons-material';
 import {
   Box,
   Button,
@@ -17,10 +17,12 @@ import AddLocation from './addLocation/AddLocation';
 
 // const AddRoom = ({ setPage }) => {
   const AddRoom = () => {
-  const {state: { images}
+
+  const {state: { images, details}
   //   state: { images, details, location, currentUser },
   //   dispatch,
   } = useValue();
+
   const [activeStep, setActiveStep] = useState(0);
   const [steps, setSteps] = useState([
     { label: 'Location', completed: false },
@@ -57,13 +59,13 @@ import AddLocation from './addLocation/AddLocation';
     }
   }, [images]);
 
-  // useEffect(() => {
-  //   if (details.title.length > 4 && details.description.length > 9) {
-  //     if (!steps[1].completed) setComplete(1, true);
-  //   } else {
-  //     if (steps[1].completed) setComplete(1, false);
-  //   }
-  // }, [details]);
+  useEffect(() => {
+    if (details.title.length > 4 && details.description.length > 9) {
+      if (!steps[1].completed) setComplete(1, true);
+    } else {
+      if (steps[1].completed) setComplete(1, false);
+    }
+  }, [details]);
 
   // useEffect(() => {
   //   if (location.lng || location.lat) {
