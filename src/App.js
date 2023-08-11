@@ -1,5 +1,6 @@
 // import { Login } from "@mui/icons-material";
 import React from "react";
+import BottomNav from "./components/BottomNav";
 import Loading from "./components/Loading";
 import NavBar from "./components/NavBar";
 import Notification from "./components/Notification";
@@ -12,6 +13,7 @@ const App = () => {
       <Notification />
       <Login />
       <NavBar />
+      <BottomNav />
     </>
   );
 };
