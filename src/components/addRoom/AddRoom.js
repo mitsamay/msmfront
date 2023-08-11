@@ -10,9 +10,9 @@ import {
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 // import { useValue } from '../../context/ContextProvider';
-// import AddDetails from './addDetails/AddDetails';
-// import AddImages from './addImages/AddImages';
-// import AddLocation from './addLocation/AddLocation';
+import AddDetails from './addDetails/AddDetails';
+import AddImages from './addImages/AddImages';
+import AddLocation from './addLocation/AddLocation';
 // import { createRoom } from '../../actions/room';
 
 // const AddRoom = ({ setPage }) => {
@@ -113,14 +113,15 @@ import React, { useEffect, useState } from 'react';
           </Step>
         ))}
       </Stepper>
-      {/* <Box sx={{ pb: 7 }}>
+      {/* // ໃສ່ໜ້າປ້ອນຂໍ້ມູນ ແລະ ສະແດງຂໍ້ມູນ */}
+      <Box sx={{ pb: 7 }}>
         {
           {
             0: <AddLocation />,
             1: <AddDetails />,
             2: <AddImages />,
           }[activeStep]
-        } */}
+        }
 
         <Stack direction="row" sx={{ pt: 2, justifyContent: 'space-around' }}>
           <Button
@@ -144,8 +145,8 @@ import React, { useEffect, useState } from 'react';
               Submit
             </Button>
           </Stack>
-        )}
-      </Box> */}
+        )} */}
+      </Box>
     </Container>
   );
 };
