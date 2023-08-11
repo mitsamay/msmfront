@@ -9,7 +9,7 @@ import {
   Stepper,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-// import { useValue } from '../../context/ContextProvider';
+import { useValue } from '../../context/ContextProvider';
 import AddDetails from './addDetails/AddDetails';
 import AddImages from './addImages/AddImages';
 import AddLocation from './addLocation/AddLocation';
@@ -17,15 +17,15 @@ import AddLocation from './addLocation/AddLocation';
 
 // const AddRoom = ({ setPage }) => {
   const AddRoom = () => {
-  // const {
+  const {state: { images}
   //   state: { images, details, location, currentUser },
   //   dispatch,
-  // } = useValue();
+  } = useValue();
   const [activeStep, setActiveStep] = useState(0);
   const [steps, setSteps] = useState([
-    { label: 'Location ທີ່ຕັ້ງຕອນດິນ', completed: false },
-    { label: 'Details ລາຍລະອຽດ', completed: false },
-    { label: 'Images ຮູບພາບ', completed: false },
+    { label: 'Location', completed: false },
+    { label: 'Details', completed: false },
+    { label: 'Images', completed: false },
   ]);
   // const [showSubmit, setShowSubmit] = useState(false);
 
@@ -49,13 +49,14 @@ import AddLocation from './addLocation/AddLocation';
     return steps.findIndex((step) => !step.completed);
   };
 
-  // useEffect(() => {
-  //   if (images.length) {
-  //     if (!steps[2].completed) setComplete(2, true);
-  //   } else {
-  //     if (steps[2].completed) setComplete(2, false);
-  //   }
-  // }, [images]);
+  useEffect(() => {
+    if (images.length) {
+      if (!steps[2].completed) setComplete(2, true);
+    } else {
+      if (steps[2].completed) setComplete(2, false);
+    }
+  }, [images]);
+
   // useEffect(() => {
   //   if (details.title.length > 4 && details.description.length > 9) {
   //     if (!steps[1].completed) setComplete(1, true);
@@ -63,6 +64,7 @@ import AddLocation from './addLocation/AddLocation';
   //     if (steps[1].completed) setComplete(1, false);
   //   }
   // }, [details]);
+
   // useEffect(() => {
   //   if (location.lng || location.lat) {
   //     if (!steps[0].completed) setComplete(0, true);
@@ -70,12 +72,13 @@ import AddLocation from './addLocation/AddLocation';
   //     if (steps[0].completed) setComplete(0, false);
   //   }
   // }, [location]);
-  // const setComplete = (index, status) => {
-  //   setSteps((steps) => {
-  //     steps[index].completed = status;
-  //     return [...steps];
-  //   });
-  // };
+  
+  const setComplete = (index, status) => {
+    setSteps((steps) => {
+      steps[index].completed = status;
+      return [...steps];
+    });
+  };
   // useEffect(() => {
   //   if (findUnfinished() === -1) {
   //     if (!showSubmit) setShowSubmit(true);
