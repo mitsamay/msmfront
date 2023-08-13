@@ -1,4 +1,4 @@
-// import { Send } from '@mui/icons-material';
+import { Send } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -7,29 +7,30 @@ import {
   Step,
   StepButton,
   Stepper,
-} from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { useValue } from '../../context/ContextProvider';
-import AddDetails from './addDetails/AddDetails';
-import AddImages from './addImages/AddImages';
-import AddLocation from './addLocation/AddLocation';
-// import { createRoom } from '../../actions/room';
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useValue } from "../../context/ContextProvider";
+import AddDetails from "./addDetails/AddDetails";
+import AddImages from "./addImages/AddImages";
+import AddLocation from "./addLocation/AddLocation";
+import { createRoom } from "../../actions/room";
 
 // const AddRoom = ({ setPage }) => {
-  const AddRoom = () => {
-
-  const {state: { images, details, location}
-  //   state: { images, details, location, currentUser },
-  //   dispatch,
+const AddRoom = () => {
+  const {
+    // state: { images, details, location },
+    state: { images, details, location, currentUser },
+    dispatch,
   } = useValue();
 
   const [activeStep, setActiveStep] = useState(0);
   const [steps, setSteps] = useState([
-    { label: 'Location', completed: false },
-    { label: 'Details', completed: false },
-    { label: 'Images', completed: false },
+    { label: "Location", completed: false },
+    { label: "Details", completed: false },
+    { label: "Images", completed: false },
   ]);
-  // const [showSubmit, setShowSubmit] = useState(false);
+
+  const [showSubmit, setShowSubmit] = useState(false);
 
   const handleNext = () => {
     if (activeStep < steps.length - 1) {
@@ -74,33 +75,35 @@ import AddLocation from './addLocation/AddLocation';
       if (steps[0].completed) setComplete(0, false);
     }
   }, [location]);
-  
+
   const setComplete = (index, status) => {
     setSteps((steps) => {
       steps[index].completed = status;
       return [...steps];
     });
   };
-  // useEffect(() => {
-  //   if (findUnfinished() === -1) {
-  //     if (!showSubmit) setShowSubmit(true);
-  //   } else {
-  //     if (showSubmit) setShowSubmit(false);
-  //   }
-  // }, [steps]);
 
-  // const handleSubmit = () => {
-  //   const room = {
-  //     lng: location.lng,
-  //     lat: location.lat,
-  //     price: details.price,
-  //     title: details.title,
-  //     description: details.description,
-  //     images,
-  //   };
-  //   createRoom(room, currentUser, dispatch, setPage);
-  // };
+  useEffect(() => {
+    if (findUnfinished() === -1) {
+      if (!showSubmit) setShowSubmit(true);
+    } else {
+      if (showSubmit) setShowSubmit(false);
+    }
+  }, [steps]);
 
+  // const handleSubmit = () => {};  //ບັນທຶກຂໍ້ມູນໃສ່ຖານຂໍ້ມູນ Backend
+  const handleSubmit = () => {
+    const room = {
+      lng: location.lng,
+      lat: location.lat,
+      price: details.price,
+      title: details.title,
+      description: details.description,
+      images,
+    };
+    // createRoom(room, currentUser, dispatch, setPage);
+    createRoom(room, currentUser, dispatch);
+  };
 
   return (
     <Container sx={{ my: 4 }}>
@@ -128,7 +131,7 @@ import AddLocation from './addLocation/AddLocation';
           }[activeStep]
         }
 
-        <Stack direction="row" sx={{ pt: 2, justifyContent: 'space-around' }}>
+        <Stack direction="row" sx={{ pt: 2, justifyContent: "space-around" }}>
           <Button
             color="inherit"
             disabled={!activeStep}
@@ -140,8 +143,8 @@ import AddLocation from './addLocation/AddLocation';
             Next
           </Button>
         </Stack>
-        {/* {showSubmit && (
-          <Stack sx={{ alignItems: 'center' }}>
+        {showSubmit && (
+          <Stack sx={{ alignItems: "center" }}>
             <Button
               variant="contained"
               endIcon={<Send />}
@@ -150,11 +153,10 @@ import AddLocation from './addLocation/AddLocation';
               Submit
             </Button>
           </Stack>
-        )} */}
+        )}
       </Box>
     </Container>
   );
 };
 
 export default AddRoom;
-
