@@ -17,7 +17,7 @@ const initialState = {
   details: { title: "", description: "", price: 0 },
   location: { lng: 0, lat: 0 },
   // location: { lng: 17.966667, lat: 102.6 },
-  // rooms: [],
+  rooms: [],
   // priceFilter: 50,
   // addressFilter: null,
   // filteredRooms: [],

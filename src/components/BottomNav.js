@@ -11,7 +11,7 @@ import Rooms from "./rooms/Rooms";
 import AddRoom from "./addRoom/AddRoom";
 import Deeds from "./deeds/Deeds";
 import AddDeeds from "./addDeeds/AddDeeds";
-// import Protected from './protected/Protected';
+import Protected from "./protected/Protected";
 
 const BottomNav = () => {
   const [value, setValue] = useState(0);
@@ -31,7 +31,11 @@ const BottomNav = () => {
           //   </Protected>
           // ),
           2: <Deeds />,
-          3: <AddRoom />,
+          3: (
+            <Protected>
+              <AddRoom setPage={setValue} />
+            </Protected>
+          ),
           4: <AddDeeds />,
         }[value]
       }
