@@ -70,7 +70,7 @@ const AddDetails = () => {
         </RadioGroup>
       </FormControl>
       <InfoField
-        mainProps={{ name: "title", label: "Title ອອກໃຫ້ແກ່", value: title }}
+        mainProps={{ name: "title", label: "Title ອອກຊື່", value: title }}
         minLength={5}
       />
       <InfoField

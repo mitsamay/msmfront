@@ -1,4 +1,5 @@
-import { Dashboard, Logout, Settings } from "@mui/icons-material";
+// import { Dashboard, Logout, Settings } from "@mui/icons-material";
+import { Logout, Settings } from "@mui/icons-material";
 import { ListItemIcon, Menu, MenuItem } from "@mui/material";
 import React from "react";
 // import { useNavigate } from 'react-router-dom';
