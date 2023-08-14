@@ -43,14 +43,15 @@ const reducer = (state, action) => {
         location: { lng: 0, lat: 0 },
       };
 
-    //   case 'UPDATE_ROOMS':
-    //     return {
-    //       ...state,
-    //       rooms: action.payload,
+      case 'UPDATE_ROOMS':
+        return {
+          ...state,
+          rooms: action.payload,}
     //       addressFilter: null,
     //       priceFilter: 50,
     //       filteredRooms: action.payload,
     //     };
+    
     //   case 'FILTER_PRICE':
     //     return {
     //       ...state,

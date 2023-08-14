@@ -30,6 +30,7 @@ export const createRoom = async (room, currentUser, dispatch, setPage) => {
   dispatch({ type: "END_LOADING" });
 };
 
+// ດຶງຂໍ້ມູນຈາກ backend ມາປັບປຸງ
 export const getRooms = async (dispatch) => {
   const result = await fetchData({ url, method: "GET" }, dispatch);
   if (result) {
