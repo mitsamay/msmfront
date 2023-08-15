@@ -19,10 +19,12 @@ import PieRoomsCost from './PieRoomsCost';
 import AreaRoomsUsers from './AreaRoomsUsers';
 
 const Main = ({ setSelectedLink, link }) => {
+
   const {
     state: { rooms, users },
     dispatch,
   } = useValue();
+
   useEffect(() => {
     setSelectedLink(link);
     if (rooms.length === 0) getRooms(dispatch);
@@ -79,7 +81,7 @@ const Main = ({ setSelectedLink, link }) => {
                   <ListItemText
                     primary={user?.name}
                     secondary={`Time Created: ${moment(user?.createdAt).format(
-                      'YYYY-MM-DD H:mm:ss'
+                      'DD-MM-YYYY H:mm:ss'
                     )}`}
                   />
                 </ListItem>
@@ -90,7 +92,7 @@ const Main = ({ setSelectedLink, link }) => {
         </Box>
         <Divider sx={{ mt: 3, mb: 3, opacity: 0.7 }} />
         <Box>
-          <Typography>Recently added Rooms</Typography>
+          <Typography>Recently added Rooms ເພີ້ມຂໍ້ມູນຄອນໂດລ້າສຸດ</Typography>
           <List>
             {rooms.slice(0, 4).map((room, i) => (
               <Box key={room._id}>

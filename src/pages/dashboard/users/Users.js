@@ -1,11 +1,11 @@
-import { useEffect, useMemo, useState } from 'react';
-import { Avatar, Box, Typography } from '@mui/material';
-import { DataGrid, gridClasses } from '@mui/x-data-grid';
-import { useValue } from '../../../context/ContextProvider';
-import { getUsers } from '../../../actions/user';
-import moment from 'moment';
-import { grey } from '@mui/material/colors';
-import UsersActions from './UsersActions';
+import { useEffect, useMemo, useState } from "react";
+import { Avatar, Box, Typography } from "@mui/material";
+import { DataGrid, gridClasses } from "@mui/x-data-grid";
+import { useValue } from "../../../context/ContextProvider";
+import { getUsers } from "../../../actions/user";
+import moment from "moment";
+import { grey } from "@mui/material/colors";
+import UsersActions from "./UsersActions";
 
 const Users = ({ setSelectedLink, link }) => {
   const {
@@ -24,42 +24,42 @@ const Users = ({ setSelectedLink, link }) => {
   const columns = useMemo(
     () => [
       {
-        field: 'photoURL',
-        headerName: 'Avatar',
+        field: "photoURL",
+        headerName: "Avatar",
         width: 60,
         renderCell: (params) => <Avatar src={params.row.photoURL} />,
         sortable: false,
         filterable: false,
       },
-      { field: 'name', headerName: 'Name', width: 170 },
-      { field: 'email', headerName: 'Email', width: 200 },
+      { field: "name", headerName: "Name", width: 170 },
+      { field: "email", headerName: "Email", width: 200 },
       {
-        field: 'role',
-        headerName: 'Role',
+        field: "role",
+        headerName: "Role",
         width: 100,
-        type: 'singleSelect',
-        valueOptions: ['basic', 'editor', 'admin'],
+        type: "singleSelect",
+        valueOptions: ["basic", "editor", "admin"],
         editable: true,
       },
       {
-        field: 'active',
-        headerName: 'Active',
+        field: "active",
+        headerName: "Active",
         width: 100,
-        type: 'boolean',
+        type: "boolean",
         editable: true,
       },
       {
-        field: 'createdAt',
-        headerName: 'Created At',
+        field: "createdAt",
+        headerName: "Created At",
         width: 200,
         renderCell: (params) =>
-          moment(params.row.createdAt).format('YYYY-MM-DD HH:MM:SS'),
+          moment(params.row.createdAt).format("DD-MM-YYYY HH:MM:SS"),
       },
-      { field: '_id', headerName: 'Id', width: 220 },
+      { field: "_id", headerName: "Id", width: 220 },
       {
-        field: 'actions',
-        headerName: 'Actions',
-        type: 'actions',
+        field: "actions",
+        headerName: "Actions",
+        type: "actions",
         renderCell: (params) => (
           <UsersActions {...{ params, rowId, setRowId }} />
         ),
@@ -72,15 +72,15 @@ const Users = ({ setSelectedLink, link }) => {
     <Box
       sx={{
         height: 400,
-        width: '100%',
+        width: "100%",
       }}
     >
       <Typography
         variant="h3"
         component="h3"
-        sx={{ textAlign: 'center', mt: 3, mb: 3 }}
+        sx={{ textAlign: "center", mt: 3, mb: 3 }}
       >
-        Manage Users
+        Manage Users ລະບົບຈັດການຜູ້ນໍາໃຊ້ລະບົບ
       </Typography>
       <DataGrid
         columns={columns}
@@ -96,7 +96,7 @@ const Users = ({ setSelectedLink, link }) => {
         sx={{
           [`& .${gridClasses.row}`]: {
             bgcolor: (theme) =>
-              theme.palette.mode === 'light' ? grey[200] : grey[900],
+              theme.palette.mode === "light" ? grey[200] : grey[900],
           },
         }}
         onCellEditCommit={(params) => setRowId(params.id)}
