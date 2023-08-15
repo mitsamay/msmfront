@@ -22,7 +22,7 @@ const initialState = {
   addressFilter: null,  //ສະແດງຊ່ອງຄົ້ນຫາຂໍ້ມູນ ຢູ່ໄຊບາ
   filteredRooms: [],    //ກອງຂໍ້ມູນໃນແຜນທີ່
   room: null,
-  // users: [],
+  users: [],
 };
 
 const Context = createContext(initialState);
