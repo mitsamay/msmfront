@@ -24,7 +24,7 @@ export const createRoom = async (room, currentUser, dispatch, setPage) => {
     });
     dispatch({ type: "RESET_ROOM" });
     setPage(0);
-    // dispatch({ type: 'UPDATE_ROOM', payload: result });
+    dispatch({ type: 'UPDATE_ROOM', payload: result });
   }
 
   dispatch({ type: "END_LOADING" });

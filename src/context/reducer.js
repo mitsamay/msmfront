@@ -43,45 +43,47 @@ const reducer = (state, action) => {
         location: { lng: 0, lat: 0 },
       };
 
-      case 'UPDATE_ROOMS':
-        return {
-          ...state,
-          rooms: action.payload,}
-    //       addressFilter: null,
-    //       priceFilter: 50,
-    //       filteredRooms: action.payload,
-    //     };
-    
-    //   case 'FILTER_PRICE':
-    //     return {
-    //       ...state,
-    //       priceFilter: action.payload,
-    //       filteredRooms: applyFilter(
-    //         state.rooms,
-    //         state.addressFilter,
-    //         action.payload
-    //       ),
-    //     };
-    //   case 'FILTER_ADDRESS':
-    //     return {
-    //       ...state,
-    //       addressFilter: action.payload,
-    //       filteredRooms: applyFilter(
-    //         state.rooms,
-    //         action.payload,
-    //         state.priceFilter
-    //       ),
-    //     };
-    //   case 'CLEAR_ADDRESS':
-    //     return {
-    //       ...state,
-    //       addressFilter: null,
-    //       priceFilter: 50,
-    //       filteredRooms: state.rooms,
-    //     };
+    case "UPDATE_ROOMS":
+      return {
+        ...state,
+        rooms: action.payload,
+        addressFilter: null,
+        priceFilter: 50,
+        filteredRooms: action.payload,
+      };
 
-    //   case 'UPDATE_ROOM':
-    //     return { ...state, room: action.payload };
+    case "FILTER_PRICE":
+      return {
+        ...state,
+        priceFilter: action.payload, //ສະແດງທ່ອນລາຄາ ຢູ່ໄຊບາ
+        filteredRooms: applyFilter(
+          state.rooms,
+          state.addressFilter,
+          action.payload
+        ),
+      };
+
+    case "FILTER_ADDRESS":
+      return {
+        ...state,
+        addressFilter: action.payload, //ສະແດງຊ່ອງຄົ້ນຫາ ຢູ່ໄຊບາ
+        filteredRooms: applyFilter(
+          state.rooms,
+          action.payload,
+          state.priceFilter
+        ),
+      };
+
+    case "CLEAR_ADDRESS":
+      return {
+        ...state,
+        addressFilter: null, //ສະແດງຊ່ອງຄົ້ນຫາ ຢູ່ໄຊບາ
+        priceFilter: 50, //ສະແດງທ່ອນລາຄາ ຢູ່ໄຊບາ
+        filteredRooms: state.rooms,
+      };
+
+      case 'UPDATE_ROOM':
+        return { ...state, room: action.payload };
 
     //   case 'UPDATE_USERS':
     //     return { ...state, users: action.payload };
@@ -98,20 +100,24 @@ const reducer = (state, action) => {
 
 export default reducer;
 
-//   const applyFilter = (rooms, address, price) => {
-//     let filteredRooms = rooms;
-//     if (address) {
-//       const { lng, lat } = address;
-//       filteredRooms = filteredRooms.filter((room) => {
-//         const lngDifference = Math.abs(lng - room.lng);
-//         const latDifference = Math.abs(lat - room.lat);
-//         return lngDifference <= 1 && latDifference <= 1;
-//       });
-//     }
+// ຟັງຊັ້ນກັ່ນກອງຂໍ້ມູນ Cluster ຢູ່ແຜນທີ່
+const applyFilter = (rooms, address, price) => {
+  let filteredRooms = rooms;
+  if (address) {
+    const { lng, lat } = address;
+    filteredRooms = filteredRooms.filter((room) => {
+      const lngDifference = Math.abs(lng - room.lng);
+      const latDifference = Math.abs(lat - room.lat);
+      return lngDifference <= 1 && latDifference <= 1;
+      // const lngDifference = lng > room.lng ? lng - room.lng : room.lng - lng;
+      // const latDifference = lat > room.lat ? lat - room.lat : room.lat - lat;
+      // return lngDifference <= 1 && latDifference <= 1;
+    });
+  }
 
-//     if (price < 50) {
-//       filteredRooms = filteredRooms.filter((room) => room.price <= price);
-//     }
+  if (price < 50) {
+    filteredRooms = filteredRooms.filter((room) => room.price <= price);
+  }
 
-//     return filteredRooms;
-//   };
+  return filteredRooms;
+};

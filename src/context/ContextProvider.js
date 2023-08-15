@@ -3,7 +3,7 @@ import {
   useContext,
   useEffect,
   useReducer,
-  // useRef,
+  useRef,
 } from "react";
 import reducer from "./reducer";
 
@@ -18,10 +18,10 @@ const initialState = {
   location: { lng: 0, lat: 0 },
   // location: { lng: 17.966667, lat: 102.6 },
   rooms: [],
-  // priceFilter: 50,
-  // addressFilter: null,
-  // filteredRooms: [],
-  // room: null,
+  priceFilter: 50,
+  addressFilter: null,  //ສະແດງຊ່ອງຄົ້ນຫາຂໍ້ມູນ ຢູ່ໄຊບາ
+  filteredRooms: [],    //ກອງຂໍ້ມູນໃນແຜນທີ່
+  room: null,
   // users: [],
 };
 
@@ -33,8 +33,8 @@ export const useValue = () => {
 
 const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  // const mapRef = useRef();
-  // const containerRef = useRef();
+  const mapRef = useRef();
+  const containerRef = useRef();  // ສົ່ງຄ່າໄປ Sidebar.js
   useEffect(() => {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     if (currentUser) {
@@ -43,7 +43,9 @@ const ContextProvider = ({ children }) => {
   }, []);
   return (
     // <Context.Provider value={{ state, dispatch, mapRef, containerRef }}>
-    <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
+    <Context.Provider value={{ state, dispatch, mapRef, containerRef }}>
+      {children}
+    </Context.Provider>
   );
 };
 

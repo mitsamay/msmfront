@@ -13,7 +13,7 @@ import { Lock, Menu } from "@mui/icons-material";
 import UserIcons from "./user/UserIcons";
 import { useValue } from "../context/ContextProvider";
 
-// import Sidebar from './sidebar/Sidebar';
+import Sidebar from './sidebar/Sidebar';
 
 const NavBar = () => {
   const {
@@ -21,7 +21,7 @@ const NavBar = () => {
     dispatch,
   } = useValue();
 
-  //   const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
@@ -32,7 +32,7 @@ const NavBar = () => {
               <IconButton
                 size="large"
                 color="inherit"
-                // onClick={() => setIsOpen(true)}
+                onClick={() => setIsOpen(true)}
               >
                 <Menu />
               </IconButton>
@@ -69,7 +69,7 @@ const NavBar = () => {
         </Container>
       </AppBar>
       <Toolbar />
-      {/* <Sidebar {...{ isOpen, setIsOpen }} /> */}
+      <Sidebar {...{ isOpen, setIsOpen }} />
     </>
   );
 };
