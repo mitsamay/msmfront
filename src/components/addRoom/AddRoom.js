@@ -1,4 +1,4 @@
-import { Cancel, Send } from "@mui/icons-material";
+import { Cancel, Send } from '@mui/icons-material';
 import {
   Box,
   Button,
@@ -7,14 +7,14 @@ import {
   Step,
   StepButton,
   Stepper,
-} from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useValue } from "../../context/ContextProvider";
-import AddDetails from "./addDetails/AddDetails";
-import AddImages from "./addImages/AddImages";
-import AddLocation from "./addLocation/AddLocation";
-import { clearRoom, createRoom, updateRoom } from "../../actions/room";
-import { useNavigate } from "react-router-dom";
+} from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useValue } from '../../context/ContextProvider';
+import AddDetails from './addDetails/AddDetails';
+import AddImages from './addImages/AddImages';
+import AddLocation from './addLocation/AddLocation';
+import { clearRoom, createRoom, updateRoom } from '../../actions/room';
+import { useNavigate } from 'react-router-dom';
 
 const AddRoom = () => {
   const {
@@ -31,9 +31,9 @@ const AddRoom = () => {
   } = useValue();
   const [activeStep, setActiveStep] = useState(0);
   const [steps, setSteps] = useState([
-    { label: "Location", completed: false },
-    { label: "Details", completed: false },
-    { label: "Images", completed: false },
+    { label: 'Location', completed: false },
+    { label: 'Details', completed: false },
+    { label: 'Images', completed: false },
   ]);
   const [showSubmit, setShowSubmit] = useState(false);
   const handleNext = () => {
@@ -89,7 +89,6 @@ const AddRoom = () => {
     }
   }, [steps]);
 
-  // const handleSubmit = () => {};  //ບັນທຶກຂໍ້ມູນໃສ່ຖານຂໍ້ມູນ Backend
   const handleSubmit = () => {
     const room = {
       lng: location.lng,
@@ -113,14 +112,13 @@ const AddRoom = () => {
   const navigate = useNavigate();
   const handleCancel = () => {
     if (updatedRoom) {
-      navigate("/dashboard/rooms");
+      navigate('/dashboard/rooms');
       clearRoom(dispatch, currentUser, addedImages, updatedRoom);
     } else {
-      dispatch({ type: "UPDATE_SECTION", payload: 0 });
+      dispatch({ type: 'UPDATE_SECTION', payload: 0 });
       clearRoom(dispatch, currentUser, images);
     }
   };
-
   return (
     <Container sx={{ my: 4 }}>
       <Stepper
@@ -137,7 +135,6 @@ const AddRoom = () => {
           </Step>
         ))}
       </Stepper>
-      {/* // ໃສ່ໜ້າປ້ອນຂໍ້ມູນ ແລະ ສະແດງຂໍ້ມູນ */}
       <Box sx={{ pb: 7 }}>
         {
           {
@@ -147,7 +144,7 @@ const AddRoom = () => {
           }[activeStep]
         }
 
-        <Stack direction="row" sx={{ pt: 2, justifyContent: "space-around" }}>
+        <Stack direction="row" sx={{ pt: 2, justifyContent: 'space-around' }}>
           <Button
             color="inherit"
             disabled={!activeStep}
@@ -161,7 +158,7 @@ const AddRoom = () => {
         </Stack>
 
         <Stack
-          sx={{ alignItems: "center", justifyContent: "center", gap: 2 }}
+          sx={{ alignItems: 'center', justifyContent: 'center', gap: 2 }}
           direction="row"
         >
           {showSubmit && (
@@ -170,7 +167,7 @@ const AddRoom = () => {
               endIcon={<Send />}
               onClick={handleSubmit}
             >
-              {updatedRoom ? "Update" : "Submit"}
+              {updatedRoom ? 'Update' : 'Submit'}
             </Button>
           )}
           <Button

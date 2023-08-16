@@ -29,11 +29,9 @@ const AddImages = () => {
           {isDragActive ? (
             <p style={{ color: 'green' }}>Drop the files here...</p>
           ) : (
-            // Drag 'n' Drop some files here, or click to select files
-            <p>ລາກ ແລະ ວາງ ຟາຍຮູບພາບໃສ່, ຫຼື ຄຼິກໃສ່ເພື່ອເລືອກຟາຍ</p>
+            <p>Drag 'n' Drop some files here, or click to select files</p>
           )}
-          {/* images with *.jpeg, *.png, *.jpg extension will be accepted */}
-          <em>(ຮູບພາບ *.jpeg, *.png, *.jpg ເທົ່ານັ້ນ)</em> 
+          <em>(images with *.jpeg, *.png, *.jpg extension will be accepted)</em>
         </div>
       </Paper>
       <ProgressList {...{ files }} />

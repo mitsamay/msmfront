@@ -19,18 +19,15 @@ import PieRoomsCost from './PieRoomsCost';
 import AreaRoomsUsers from './AreaRoomsUsers';
 
 const Main = ({ setSelectedLink, link }) => {
-
   const {
-    state: { rooms, users },
+    state: { rooms, users, currentUser },
     dispatch,
   } = useValue();
-
   useEffect(() => {
     setSelectedLink(link);
     if (rooms.length === 0) getRooms(dispatch);
-    if (users.length === 0) getUsers(dispatch);
+    if (users.length === 0) getUsers(dispatch, currentUser);
   }, []);
-
   return (
     <Box
       sx={{
@@ -43,7 +40,7 @@ const Main = ({ setSelectedLink, link }) => {
       }}
     >
       <Paper elevation={3} sx={{ p: 3 }}>
-        <Typography variant="h4">Total Users ຜູ້ນໍາໃຊ້ລະບົບທັງໝົດ</Typography>
+        <Typography variant="h4">Total Users</Typography>
         <Box
           sx={{
             display: 'flex',
@@ -56,7 +53,7 @@ const Main = ({ setSelectedLink, link }) => {
         </Box>
       </Paper>
       <Paper elevation={3} sx={{ p: 3 }}>
-        <Typography variant="h4">Total Rooms ຫ້ອງຄອນໂດທັງໝົດ</Typography>
+        <Typography variant="h4">Total Rooms</Typography>
         <Box
           sx={{
             display: 'flex',
@@ -70,7 +67,7 @@ const Main = ({ setSelectedLink, link }) => {
       </Paper>
       <Paper elevation={3} sx={{ p: 2, gridColumn: 3, gridRow: '1/4' }}>
         <Box>
-          <Typography>Recently added Users ເພີ້ມຜູ້ນໍາໃຊ້ລ້າສຸດ</Typography>
+          <Typography>Recently added Users</Typography>
           <List>
             {users.slice(0, 4).map((user, i) => (
               <Box key={user._id}>
@@ -81,7 +78,7 @@ const Main = ({ setSelectedLink, link }) => {
                   <ListItemText
                     primary={user?.name}
                     secondary={`Time Created: ${moment(user?.createdAt).format(
-                      'DD-MM-YYYY H:mm:ss'
+                      'YYYY-MM-DD H:mm:ss'
                     )}`}
                   />
                 </ListItem>
@@ -92,7 +89,7 @@ const Main = ({ setSelectedLink, link }) => {
         </Box>
         <Divider sx={{ mt: 3, mb: 3, opacity: 0.7 }} />
         <Box>
-          <Typography>Recently added Rooms ເພີ້ມຂໍ້ມູນຄອນໂດລ້າສຸດ</Typography>
+          <Typography>Recently added Rooms</Typography>
           <List>
             {rooms.slice(0, 4).map((room, i) => (
               <Box key={room._id}>

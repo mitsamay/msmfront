@@ -1,9 +1,9 @@
-import { Box, Stack, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import { PieChart, Pie, Cell, Tooltip } from "recharts";
-import { useValue } from "../../../context/ContextProvider";
+import { Box, Stack, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { PieChart, Pie, Cell, Tooltip } from 'recharts';
+import { useValue } from '../../../context/ContextProvider';
 
-const COLORS = ["#00C49F", "#0088FE", "#FFBB28", "#FF8042"];
+const COLORS = ['#00C49F', '#0088FE', '#FFBB28', '#FF8042'];
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({
@@ -23,7 +23,7 @@ const renderCustomizedLabel = ({
       x={x}
       y={y}
       fill="white"
-      textAnchor={x > cx ? "start" : "end"}
+      textAnchor={x > cx ? 'start' : 'end'}
       dominantBaseline="central"
     >
       {`${(percent * 100).toFixed(0)}%`}
@@ -48,19 +48,19 @@ export default function PieRoomsCost() {
       moreThan35++;
     });
     setCostGroups([
-      { name: "Free Stay", qty: free },
-      { name: "Less Than $15", qty: lessThan15 },
-      { name: "Between $15 & $35", qty: between15And35 },
-      { name: "More Than $35", qty: moreThan35 },
+      { name: 'Free Stay', qty: free },
+      { name: 'Less Than $15', qty: lessThan15 },
+      { name: 'Between $15 & $35', qty: between15And35 },
+      { name: 'More Than $35', qty: moreThan35 },
     ]);
   }, [rooms]);
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-evenly",
-        flexWrap: "wrap",
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        flexWrap: 'wrap',
       }}
     >
       <PieChart width={200} height={200}>
@@ -80,7 +80,7 @@ export default function PieRoomsCost() {
       </PieChart>
       <Stack gap={2}>
         <Typography variant="h6">Rooms Cost</Typography>
-        <Box sx={{ display: "flex", gap: 3, flexWrap: "wrap" }}>
+        <Box sx={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
           {COLORS.map((color, i) => (
             <Stack key={color} alignItems="center" spacing={1}>
               <Box sx={{ width: 20, height: 20, background: color }} />

@@ -1,7 +1,7 @@
-import { Lock } from "@mui/icons-material";
-import { Alert, AlertTitle, Button, Container } from "@mui/material";
-import React from "react";
-import { useValue } from "../../context/ContextProvider";
+import { Lock } from '@mui/icons-material';
+import { Alert, AlertTitle, Button, Container } from '@mui/material';
+import React from 'react';
+import { useValue } from '../../context/ContextProvider';
 
 const AccessMessage = () => {
   const { dispatch } = useValue();
@@ -14,7 +14,7 @@ const AccessMessage = () => {
           variant="outlined"
           sx={{ ml: 2 }}
           startIcon={<Lock />}
-          onClick={() => dispatch({ type: "OPEN_LOGIN" })}
+          onClick={() => dispatch({ type: 'OPEN_LOGIN' })}
         >
           login
         </Button>

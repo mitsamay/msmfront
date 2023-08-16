@@ -1,5 +1,5 @@
-import moment from "moment";
-import { useEffect, useState } from "react";
+import moment from 'moment';
+import { useEffect, useState } from 'react';
 import {
   AreaChart,
   Area,
@@ -7,10 +7,10 @@ import {
   YAxis,
   ResponsiveContainer,
   Tooltip,
-} from "recharts";
-import { useValue } from "../../../context/ContextProvider";
+} from 'recharts';
+import { useValue } from '../../../context/ContextProvider';
 
-const months = 6;
+const months = 5;
 const today = new Date();
 const tempData = [];
 for (let i = 0; i < months; i++) {
@@ -20,7 +20,7 @@ for (let i = 0; i < months; i++) {
   );
   tempData.push({
     date,
-    name: moment(date).format("MMM YYYY"),
+    name: moment(date).format('MMM YYYY'),
     users: 0,
     rooms: 0,
   });
@@ -30,7 +30,6 @@ export default function AreaRoomsUsers() {
   const {
     state: { rooms, users },
   } = useValue();
-
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -39,7 +38,7 @@ export default function AreaRoomsUsers() {
     }
     users.forEach((user) => {
       for (let i = 0; i < months; i++) {
-        if (moment(tempData[i].date).isSame(user?.createdAt, "month"))
+        if (moment(tempData[i].date).isSame(user?.createdAt, 'month'))
           return tempData[i].users++;
       }
     });
@@ -52,14 +51,14 @@ export default function AreaRoomsUsers() {
     }
     rooms.forEach((room) => {
       for (let i = 0; i < months; i++) {
-        if (moment(tempData[i].date).isSame(room?.createdAt, "month"))
+        if (moment(tempData[i].date).isSame(room?.createdAt, 'month'))
           return tempData[i].rooms++;
       }
     });
     setData([...tempData]);
   }, [rooms]);
   return (
-    <div style={{ width: "100%", height: 300, minWidth: 250 }}>
+    <div style={{ width: '100%', height: 300, minWidth: 250 }}>
       <ResponsiveContainer>
         <AreaChart
           data={data}

@@ -11,19 +11,19 @@ import {
   Toolbar,
   Tooltip,
   Typography,
-} from "@mui/material";
-import { forwardRef, useEffect, useState } from "react";
-import { useValue } from "../../context/ContextProvider";
-import { Close, StarBorder } from "@mui/icons-material";
-// Swiper V8.2.2 -----------------npm i swiper@8.2.2
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay, EffectCoverflow, Lazy, Zoom } from "swiper";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/effect-coverflow";
-import "swiper/css/lazy";
-import "swiper/css/zoom";
-import "./swiper.css";
+} from '@mui/material';
+import { forwardRef, useEffect, useState } from 'react';
+import { useValue } from '../../context/ContextProvider';
+import { Close, StarBorder } from '@mui/icons-material';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay, EffectCoverflow, Lazy, Zoom } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/lazy';
+import 'swiper/css/zoom';
+import './swiper.css';
 
 const Transition = forwardRef((props, ref) => {
   return <Slide direction="up" {...props} ref={ref} />;
@@ -47,7 +47,7 @@ const Room = () => {
   }, [room]);
 
   const handleClose = () => {
-    dispatch({ type: "UPDATE_ROOM", payload: null });
+    dispatch({ type: 'UPDATE_ROOM', payload: null });
   };
   return (
     <Dialog
@@ -93,11 +93,11 @@ const Room = () => {
             </SwiperSlide>
           ))}
           <Tooltip
-            title={room?.uName || ""}
+            title={room?.uName || ''}
             sx={{
-              position: "absolute",
-              bottom: "8px",
-              left: "8px",
+              position: 'absolute',
+              bottom: '8px',
+              left: '8px',
               zIndex: 2,
             }}
           >
@@ -108,26 +108,26 @@ const Room = () => {
           <Stack
             direction="row"
             sx={{
-              justifyContent: "space-between",
-              flexWrap: "wrap",
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
             }}
           >
             <Box>
               <Typography variant="h6" component="span">
-                {"Price Per Night: "}
+                {'Price Per Night: '}
               </Typography>
               <Typography component="span">
-                {room?.price === 0 ? "Free Stay" : "$" + room?.price}
+                {room?.price === 0 ? 'Free Stay' : '$' + room?.price}
               </Typography>
             </Box>
             <Box
               sx={{
-                display: "flex",
-                alignItems: "center",
+                display: 'flex',
+                alignItems: 'center',
               }}
             >
               <Typography variant="h6" component="span">
-                {"Ratings: "}
+                {'Ratings: '}
               </Typography>
               <Rating
                 name="room-ratings"
@@ -140,26 +140,26 @@ const Room = () => {
           <Stack
             direction="row"
             sx={{
-              justifyContent: "space-between",
-              flexWrap: "wrap",
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
             }}
           >
             <Box>
               <Typography variant="h6" component="span">
-                {"Place Name: "}
+                {'Place Name: '}
               </Typography>
               <Typography component="span">{place?.text}</Typography>
             </Box>
             <Box>
               <Typography variant="h6" component="span">
-                {"Address: "}
+                {'Address: '}
               </Typography>
               <Typography component="span">{place?.place_name}</Typography>
             </Box>
           </Stack>
           <Stack>
             <Typography variant="h6" component="span">
-              {"Details: "}
+              {'Details: '}
             </Typography>
             <Typography component="span">{room?.description}</Typography>
           </Stack>

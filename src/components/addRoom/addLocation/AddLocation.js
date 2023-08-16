@@ -1,13 +1,13 @@
-import { Box } from "@mui/material";
+import { Box } from '@mui/material';
 import ReactMapGL, {
   GeolocateControl,
   Marker,
   NavigationControl,
-} from "react-map-gl";
-import { useValue } from "../../../context/ContextProvider";
-import "mapbox-gl/dist/mapbox-gl.css";
-import { useEffect, useRef } from "react";
-import Geocoder from "./Geocoder";
+} from 'react-map-gl';
+import { useValue } from '../../../context/ContextProvider';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import { useEffect, useRef } from 'react';
+import Geocoder from './Geocoder';
 
 const AddLocation = () => {
   const {
@@ -24,13 +24,13 @@ const AddLocation = () => {
       localStorage.getItem(currentUser.id)
     )?.location;
     if (!lng && !lat && !storedLocation?.lng && !storedLocation?.lat) {
-      fetch("https://ipapi.co/json")
+      fetch('https://ipapi.co/json')
         .then((response) => {
           return response.json();
         })
         .then((data) => {
           dispatch({
-            type: "UPDATE_LOCATION",
+            type: 'UPDATE_LOCATION',
             payload: { lng: data.longitude, lat: data.latitude },
           });
         });
@@ -44,12 +44,11 @@ const AddLocation = () => {
       });
     }
   }, [lng, lat]);
-
   return (
     <Box
       sx={{
         height: 400,
-        position: "relative",
+        position: 'relative',
       }}
     >
       <ReactMapGL
@@ -60,9 +59,7 @@ const AddLocation = () => {
           latitude: lat,
           zoom: 8,
         }}
-        // mapStyle="mapbox://styles/mapbox/streets-v11"  //ແຜນທີ່ໂຕໂປ
-        mapStyle="mapbox://styles/mapbox/satellite-streets-v12" //ແຜນທີ່ດາວທຽມ+ເສັ້ນທາງ+ສະຖານທີ່
-        // mapStyle="mapbox://styles/mapbox/satellite-v9"  //ແຜນທີ່ດາວທຽມຢ່າງດຽວ
+        mapStyle="mapbox://styles/mapbox/streets-v11"
       >
         <Marker
           latitude={lat}
@@ -70,7 +67,7 @@ const AddLocation = () => {
           draggable
           onDragEnd={(e) =>
             dispatch({
-              type: "UPDATE_LOCATION",
+              type: 'UPDATE_LOCATION',
               payload: { lng: e.lngLat.lng, lat: e.lngLat.lat },
             })
           }
@@ -81,7 +78,7 @@ const AddLocation = () => {
           trackUserLocation
           onGeolocate={(e) =>
             dispatch({
-              type: "UPDATE_LOCATION",
+              type: 'UPDATE_LOCATION',
               payload: { lng: e.coords.longitude, lat: e.coords.latitude },
             })
           }

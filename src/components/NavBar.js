@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   AppBar,
   Box,
@@ -7,12 +7,12 @@ import {
   IconButton,
   Toolbar,
   Typography,
-} from "@mui/material";
-import { Lock, Menu } from "@mui/icons-material";
+} from '@mui/material';
+import { Lock, Menu } from '@mui/icons-material';
 
-import { useValue } from "../context/ContextProvider";
-import UserIcons from "./user/UserIcons";
-import Sidebar from "./sidebar/Sidebar";
+import { useValue } from '../context/ContextProvider';
+import UserIcons from './user/UserIcons';
+import Sidebar from './sidebar/Sidebar';
 
 const NavBar = () => {
   const {
@@ -40,23 +40,23 @@ const NavBar = () => {
               variant="h6"
               component="h1"
               noWrap
-              sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+              sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
             >
-              Mitsamay System
+              You Are Welcome
             </Typography>
             <Typography
               variant="h6"
               component="h1"
               noWrap
-              sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+              sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
             >
-              MSM
+              YRW
             </Typography>
             {!currentUser ? (
               <Button
                 color="inherit"
                 startIcon={<Lock />}
-                onClick={() => dispatch({ type: "OPEN_LOGIN" })}
+                onClick={() => dispatch({ type: 'OPEN_LOGIN' })}
               >
                 Login
               </Button>
