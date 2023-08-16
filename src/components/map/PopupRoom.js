@@ -12,7 +12,6 @@ import { useValue } from "../../context/ContextProvider";
 const PopupRoom = ({ popupInfo }) => {
   const { title, description, price, images } = popupInfo;
   const { dispatch } = useValue();
-
   return (
     <Card sx={{ maxWidth: 400 }}>
       <ImageListItem sx={{ display: "block" }}>

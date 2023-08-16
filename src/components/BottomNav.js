@@ -4,7 +4,7 @@ import {
   Box,
   Paper,
 } from "@mui/material";
-import { AddLocationAlt, Approval, Bed, LocationOn } from "@mui/icons-material";
+import { AddLocationAlt, Bed, LocationOn } from "@mui/icons-material";
 import { useEffect, useRef, useState } from "react";
 import ClusterMap from "./map/ClusterMap";
 import Rooms from "./rooms/Rooms";
@@ -15,7 +15,6 @@ import Protected from "./protected/Protected";
 import { useValue } from "../context/ContextProvider";
 
 const BottomNav = () => {
-  // const [value, setValue] = useState(0);
   const {
     state: { section },
     dispatch,
@@ -25,7 +24,6 @@ const BottomNav = () => {
 
   useEffect(() => {
     ref.current.ownerDocument.body.scrollTop = 0;
-    // }, [value]);
   }, [section]);
 
   return (
@@ -34,20 +32,13 @@ const BottomNav = () => {
         {
           0: <ClusterMap />,
           1: <Rooms />,
-          // 2: (
-          //   <Protected>
-          //     <AddRoom setPage={setValue} />
-          //   </Protected>
-          // ),
           2: <Deeds />,
           3: (
             <Protected>
-              {/* <AddRoom setPage={setValue} /> */}
               <AddRoom />
             </Protected>
           ),
           4: <AddDeeds />,
-          // }[value]
         }[section]
       }
       <Paper
@@ -56,18 +47,14 @@ const BottomNav = () => {
       >
         <BottomNavigation
           showLabels
-          // value={value}
           value={section}
-          // onChange={(e, newValue) => setValue(newValue)}
           onChange={(e, newValue) =>
             dispatch({ type: "UPDATE_SECTION", payload: newValue })
           }
         >
           <BottomNavigationAction label="Map" icon={<LocationOn />} />
           <BottomNavigationAction label="Rooms" icon={<Bed />} />
-          <BottomNavigationAction label="Deeds" icon={<Approval />} />
-          <BottomNavigationAction label="Add Rooms" icon={<AddLocationAlt />} />
-          <BottomNavigationAction label="Add Deeds" icon={<AddLocationAlt />} />
+          <BottomNavigationAction label="Add" icon={<AddLocationAlt />} />
         </BottomNavigation>
       </Paper>
     </Box>

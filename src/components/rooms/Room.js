@@ -49,7 +49,6 @@ const Room = () => {
   const handleClose = () => {
     dispatch({ type: "UPDATE_ROOM", payload: null });
   };
-
   return (
     <Dialog
       fullScreen
@@ -106,7 +105,7 @@ const Room = () => {
           </Tooltip>
         </Swiper>
         <Stack sx={{ p: 3 }} spacing={2}>
-          <Stack // ແຖວທີ 1
+          <Stack
             direction="row"
             sx={{
               justifyContent: "space-between",
@@ -115,12 +114,10 @@ const Room = () => {
           >
             <Box>
               <Typography variant="h6" component="span">
-                {"Price Per Night ລາຄາຕໍ່ໜຶ່ງຄືນ: "}
+                {"Price Per Night: "}
               </Typography>
               <Typography component="span">
-                {room?.price === 0
-                  ? "Free Stay ເຂົ້າພັກຟີຣ"
-                  : "$" + room?.price}
+                {room?.price === 0 ? "Free Stay" : "$" + room?.price}
               </Typography>
             </Box>
             <Box
@@ -140,7 +137,7 @@ const Room = () => {
               />
             </Box>
           </Stack>
-          <Stack // ແຖວທີ 2
+          <Stack
             direction="row"
             sx={{
               justifyContent: "space-between",

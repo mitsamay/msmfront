@@ -47,6 +47,13 @@ const ContextProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (currentUser) {
+      dispatch({ type: "UPDATE_USER", payload: currentUser });
+    }
+  }, []);
+
+  useEffect(() => {
     if (state.currentUser) {
       const room = JSON.parse(localStorage.getItem(state.currentUser.id));
       if (room) {

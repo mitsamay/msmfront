@@ -19,7 +19,6 @@ const Profile = () => {
     state: { profile, currentUser },
     dispatch,
   } = useValue();
-
   const nameRef = useRef();
 
   const handleClose = () => {
@@ -36,14 +35,11 @@ const Profile = () => {
       });
     }
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const name = nameRef.current.value;
-    // pass user name and photo file to new function in user actions
     updateProfile(currentUser, { name, file: profile.file }, dispatch);
   };
-
   return (
     <Dialog open={profile.open} onClose={handleClose}>
       <DialogTitle>

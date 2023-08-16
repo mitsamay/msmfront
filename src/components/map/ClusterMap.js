@@ -16,11 +16,9 @@ const supercluster = new Supercluster({
 const ClusterMap = () => {
   const {
     state: { filteredRooms },
-    // state: { rooms },
     dispatch,
     mapRef,
   } = useValue();
-
   const [points, setPoints] = useState([]);
   const [clusters, setClusters] = useState([]);
   const [bounds, setBounds] = useState([-180, -85, 180, 85]);
@@ -31,13 +29,8 @@ const ClusterMap = () => {
     getRooms(dispatch);
   }, []);
 
-  // useEffect(() => {
-
-  // }, [rooms]);
-
   useEffect(() => {
     const points = filteredRooms.map((room) => ({
-      // const points = rooms.map((room) => ({
       type: "Feature",
       properties: {
         cluster: false,
@@ -58,7 +51,6 @@ const ClusterMap = () => {
     }));
     setPoints(points);
   }, [filteredRooms]);
-  // }, [rooms]);
 
   useEffect(() => {
     supercluster.load(points);
@@ -71,10 +63,8 @@ const ClusterMap = () => {
     }
   }, [mapRef?.current]);
 
-  // return;
   return (
     <ReactMapGL
-      // initialViewState={{ latitude: 51.5072, longitude: 0.1276 }}
       initialViewState={{ latitude: 17.966667, longitude: 102.6 }}
       mapboxAccessToken={process.env.REACT_APP_MAP_TOKEN}
       mapStyle="mapbox://styles/mapbox/satellite-streets-v12"
@@ -149,7 +139,6 @@ const ClusterMap = () => {
       )}
     </ReactMapGL>
   );
-  // <div>ClusterMap</div>;
 };
 
 export default ClusterMap;

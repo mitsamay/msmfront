@@ -10,10 +10,9 @@ import {
 } from "@mui/material";
 import { Lock, Menu } from "@mui/icons-material";
 
-import UserIcons from "./user/UserIcons";
 import { useValue } from "../context/ContextProvider";
-
-import Sidebar from './sidebar/Sidebar';
+import UserIcons from "./user/UserIcons";
+import Sidebar from "./sidebar/Sidebar";
 
 const NavBar = () => {
   const {
@@ -21,7 +20,7 @@ const NavBar = () => {
     dispatch,
   } = useValue();
 
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
@@ -43,7 +42,7 @@ const NavBar = () => {
               noWrap
               sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
             >
-              Mitsamay System
+              You Are Welcome
             </Typography>
             <Typography
               variant="h6"
@@ -51,13 +50,12 @@ const NavBar = () => {
               noWrap
               sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
             >
-              MSM
+              YRW
             </Typography>
             {!currentUser ? (
               <Button
                 color="inherit"
                 startIcon={<Lock />}
-                // onClick={() => dispatch({ type: 'OPEN_LOGIN' })}
                 onClick={() => dispatch({ type: "OPEN_LOGIN" })}
               >
                 Login
