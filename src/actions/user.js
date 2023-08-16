@@ -6,7 +6,6 @@ const url = process.env.REACT_APP_SERVER_URL + "/user";
 
 export const register = async (user, dispatch) => {
   dispatch({ type: "START_LOADING" });
-
   // Send request with fetch
   const result = await fetchData(
     { url: url + "/register", body: user },
@@ -49,7 +48,6 @@ export const updateProfile = async (currentUser, updatedFields, dispatch) => {
     if (file) {
       const imageName = uuidv4() + "." + file?.name?.split(".")?.pop();
       const photoURL = await uploadFile(
-        //Upload to firebase
         file,
         `profile/${currentUser?.id}/${imageName}`
       );
@@ -94,20 +92,30 @@ export const updateProfile = async (currentUser, updatedFields, dispatch) => {
   dispatch({ type: "END_LOADING" });
 };
 
-export const getUsers = async (dispatch) => {
-  const result = await fetchData({ url, method: "GET" }, dispatch);
+export const getUsers = async (dispatch, currentUser) => {
+  const result = await fetchData(
+    { url, method: "GET", token: currentUser.token },
+    dispatch
+  );
   if (result) {
     dispatch({ type: "UPDATE_USERS", payload: result });
   }
 };
 
-export const updateStatus = (updatedFields, userId, dispatch) => {
+export const updateStatus = (updatedFields, userId, dispatch, currentUser) => {
   return fetchData(
     {
       url: `${url}/updateStatus/${userId}`,
       method: "PATCH",
+      token: currentUser.token,
       body: updatedFields,
     },
     dispatch
   );
+};
+
+export const logout = (dispatch) => {
+  dispatch({ type: "UPDATE_USER", payload: null });
+  dispatch({ type: "RESET_ROOM" });
+  dispatch({ type: "UPDATE_USERS", payload: [] });
 };
