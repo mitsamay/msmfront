@@ -1,4 +1,4 @@
-import deleteImages from './utils/deleteImages';
+import deleteImages from "./utils/deleteImages";
 import fetchData from "./utils/fetchData";
 
 const url = process.env.REACT_APP_SERVER_URL + "/room";
@@ -24,7 +24,7 @@ export const createRoom = async (room, currentUser, dispatch, setPage) => {
     });
     dispatch({ type: "RESET_ROOM" });
     setPage(0);
-    dispatch({ type: 'UPDATE_ROOM', payload: result });
+    dispatch({ type: "UPDATE_ROOM", payload: result });
   }
 
   dispatch({ type: "END_LOADING" });
@@ -40,25 +40,25 @@ export const getRooms = async (dispatch) => {
 
 //-----------------------------------------------------------------
 export const deleteRoom = async (room, currentUser, dispatch) => {
-  dispatch({ type: 'START_LOADING' });
+  dispatch({ type: "START_LOADING" });
 
   const result = await fetchData(
-    { url: `${url}/${room._id}`, method: 'DELETE', token: currentUser?.token },
+    { url: `${url}/${room._id}`, method: "DELETE", token: currentUser?.token },
     dispatch
   );
   if (result) {
     dispatch({
-      type: 'UPDATE_ALERT',
+      type: "UPDATE_ALERT",
       payload: {
         open: true,
-        severity: 'success',
-        message: 'The room has been deleted successfully',
+        severity: "success",
+        message: "The room has been deleted successfully",
       },
     });
 
-    dispatch({ type: 'DELETE_ROOM', payload: result._id });
+    dispatch({ type: "DELETE_ROOM", payload: result._id });
     deleteImages(room.images, currentUser.id);
   }
 
-  dispatch({ type: 'END_LOADING' });
+  dispatch({ type: "END_LOADING" });
 };
