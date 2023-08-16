@@ -5,7 +5,6 @@ import pendingIcon from "./icons/progress1.svg";
 import { Check } from "@mui/icons-material";
 
 let timer;
-
 const InfoField = ({ mainProps, optionalProps = {}, minLength }) => {
   const { dispatch } = useValue();
   const [editing, setEditing] = useState(false);
@@ -30,7 +29,6 @@ const InfoField = ({ mainProps, optionalProps = {}, minLength }) => {
       }
     }, 1000);
   };
-
   return (
     <TextField
       {...mainProps}

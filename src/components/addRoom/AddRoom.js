@@ -1,4 +1,4 @@
-import { Send } from "@mui/icons-material";
+import { Cancel, Send } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -13,26 +13,29 @@ import { useValue } from "../../context/ContextProvider";
 import AddDetails from "./addDetails/AddDetails";
 import AddImages from "./addImages/AddImages";
 import AddLocation from "./addLocation/AddLocation";
-import { createRoom } from "../../actions/room";
+import { clearRoom, createRoom, updateRoom } from "../../actions/room";
+import { useNavigate } from "react-router-dom";
 
 const AddRoom = () => {
-  // const AddRoom = ({ setPage }) => {
-  // const AddRoom = () => {
   const {
-    // state: { images, details, location },
-    state: { images, details, location, currentUser },
+    state: {
+      images,
+      details,
+      location,
+      currentUser,
+      updatedRoom,
+      deletedImages,
+      addedImages,
+    },
     dispatch,
   } = useValue();
-
   const [activeStep, setActiveStep] = useState(0);
   const [steps, setSteps] = useState([
     { label: "Location", completed: false },
     { label: "Details", completed: false },
     { label: "Images", completed: false },
   ]);
-
   const [showSubmit, setShowSubmit] = useState(false);
-
   const handleNext = () => {
     if (activeStep < steps.length - 1) {
       setActiveStep((activeStep) => activeStep + 1);
@@ -41,14 +44,12 @@ const AddRoom = () => {
       setActiveStep(stepIndex);
     }
   };
-
   const checkDisabled = () => {
     if (activeStep < steps.length - 1) return false;
     const index = findUnfinished();
     if (index !== -1) return false;
     return true;
   };
-
   const findUnfinished = () => {
     return steps.findIndex((step) => !step.completed);
   };
@@ -60,7 +61,6 @@ const AddRoom = () => {
       if (steps[2].completed) setComplete(2, false);
     }
   }, [images]);
-
   useEffect(() => {
     if (details.title.length > 4 && details.description.length > 9) {
       if (!steps[1].completed) setComplete(1, true);
@@ -68,7 +68,6 @@ const AddRoom = () => {
       if (steps[1].completed) setComplete(1, false);
     }
   }, [details]);
-
   useEffect(() => {
     if (location.lng || location.lat) {
       if (!steps[0].completed) setComplete(0, true);
@@ -76,14 +75,12 @@ const AddRoom = () => {
       if (steps[0].completed) setComplete(0, false);
     }
   }, [location]);
-
   const setComplete = (index, status) => {
     setSteps((steps) => {
       steps[index].completed = status;
       return [...steps];
     });
   };
-
   useEffect(() => {
     if (findUnfinished() === -1) {
       if (!showSubmit) setShowSubmit(true);
@@ -102,9 +99,26 @@ const AddRoom = () => {
       description: details.description,
       images,
     };
+    if (updatedRoom)
+      return updateRoom(
+        room,
+        currentUser,
+        dispatch,
+        updatedRoom,
+        deletedImages
+      );
     createRoom(room, currentUser, dispatch);
-    // createRoom(room, currentUser, dispatch, setPage);
-    // createRoom(room, currentUser, dispatch);
+  };
+
+  const navigate = useNavigate();
+  const handleCancel = () => {
+    if (updatedRoom) {
+      navigate("/dashboard/rooms");
+      clearRoom(dispatch, currentUser, addedImages, updatedRoom);
+    } else {
+      dispatch({ type: "UPDATE_SECTION", payload: 0 });
+      clearRoom(dispatch, currentUser, images);
+    }
   };
 
   return (
@@ -145,17 +159,28 @@ const AddRoom = () => {
             Next
           </Button>
         </Stack>
-        {showSubmit && (
-          <Stack sx={{ alignItems: "center" }}>
+
+        <Stack
+          sx={{ alignItems: "center", justifyContent: "center", gap: 2 }}
+          direction="row"
+        >
+          {showSubmit && (
             <Button
               variant="contained"
               endIcon={<Send />}
               onClick={handleSubmit}
             >
-              Submit
+              {updatedRoom ? "Update" : "Submit"}
             </Button>
-          </Stack>
-        )}
+          )}
+          <Button
+            variant="outlined"
+            endIcon={<Cancel />}
+            onClick={handleCancel}
+          >
+            Cancel
+          </Button>
+        </Stack>
       </Box>
     </Container>
   );
