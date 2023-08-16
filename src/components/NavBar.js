@@ -50,7 +50,7 @@ const NavBar = () => {
               noWrap
               sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
             >
-              YRW
+              MSM
             </Typography>
             {!currentUser ? (
               <Button
