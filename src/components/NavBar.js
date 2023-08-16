@@ -42,7 +42,7 @@ const NavBar = () => {
               noWrap
               sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
             >
-              You Are Welcome
+              Mitsamay System
             </Typography>
             <Typography
               variant="h6"
@@ -50,7 +50,7 @@ const NavBar = () => {
               noWrap
               sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
             >
-              YRW
+              MSM
             </Typography>
             {!currentUser ? (
               <Button
