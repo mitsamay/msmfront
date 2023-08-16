@@ -2,11 +2,13 @@ const reducer = (state, action) => {
   switch (action.type) {
     case 'OPEN_LOGIN':
       return { ...state, openLogin: true };
+      
     case 'CLOSE_LOGIN':
       return { ...state, openLogin: false };
 
     case 'START_LOADING':
       return { ...state, loading: true };
+
     case 'END_LOADING':
       return { ...state, loading: false };
 
@@ -22,27 +24,34 @@ const reducer = (state, action) => {
 
     case 'UPDATE_IMAGES':
       return { ...state, images: [...state.images, ...action.payload] };
+
     case 'DELETE_IMAGE':
       return {
         ...state,
         images: state.images.filter((image) => image !== action.payload),
       };
+
     case 'UPDATE_DETAILS':
       return { ...state, details: { ...state.details, ...action.payload } };
+
     case 'UPDATE_LOCATION':
       return { ...state, location: action.payload };
+
     case 'UPDATE_UPDATED_ROOM':
       return { ...state, updatedRoom: action.payload };
+
     case 'UPDATE_DELETED_IMAGES':
       return {
         ...state,
         deletedImages: [...state.deletedImages, ...action.payload],
       };
+
     case 'UPDATE_ADDED_IMAGES':
       return {
         ...state,
         addedImages: [...state.addedImages, ...action.payload],
       };
+
     case 'RESET_ROOM':
       return {
         ...state,
@@ -62,6 +71,7 @@ const reducer = (state, action) => {
         priceFilter: 50,
         filteredRooms: action.payload,
       };
+
     case 'FILTER_PRICE':
       return {
         ...state,
@@ -72,6 +82,7 @@ const reducer = (state, action) => {
           action.payload
         ),
       };
+
     case 'FILTER_ADDRESS':
       return {
         ...state,
@@ -82,6 +93,7 @@ const reducer = (state, action) => {
           state.priceFilter
         ),
       };
+
     case 'CLEAR_ADDRESS':
       return {
         ...state,
@@ -95,6 +107,7 @@ const reducer = (state, action) => {
 
     case 'UPDATE_USERS':
       return { ...state, users: action.payload };
+
     case 'DELETE_ROOM':
       return {
         ...state,
