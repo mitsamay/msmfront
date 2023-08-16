@@ -12,13 +12,22 @@ import AddRoom from "./addRoom/AddRoom";
 import Deeds from "./deeds/Deeds";
 import AddDeeds from "./addDeeds/AddDeeds";
 import Protected from "./protected/Protected";
+import { useValue } from "../context/ContextProvider";
 
 const BottomNav = () => {
-  const [value, setValue] = useState(0);
+  // const [value, setValue] = useState(0);
+  const {
+    state: { section },
+    dispatch,
+  } = useValue();
+
   const ref = useRef();
+
   useEffect(() => {
     ref.current.ownerDocument.body.scrollTop = 0;
-  }, [value]);
+    // }, [value]);
+  }, [section]);
+
   return (
     <Box ref={ref}>
       {
@@ -33,11 +42,13 @@ const BottomNav = () => {
           2: <Deeds />,
           3: (
             <Protected>
-              <AddRoom setPage={setValue} />
+              {/* <AddRoom setPage={setValue} /> */}
+              <AddRoom />
             </Protected>
           ),
           4: <AddDeeds />,
-        }[value]
+          // }[value]
+        }[section]
       }
       <Paper
         elevation={3}
@@ -45,8 +56,12 @@ const BottomNav = () => {
       >
         <BottomNavigation
           showLabels
-          value={value}
-          onChange={(e, newValue) => setValue(newValue)}
+          // value={value}
+          value={section}
+          // onChange={(e, newValue) => setValue(newValue)}
+          onChange={(e, newValue) =>
+            dispatch({ type: "UPDATE_SECTION", payload: newValue })
+          }
         >
           <BottomNavigationAction label="Map" icon={<LocationOn />} />
           <BottomNavigationAction label="Rooms" icon={<Bed />} />

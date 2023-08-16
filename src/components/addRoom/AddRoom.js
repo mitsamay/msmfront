@@ -15,8 +15,9 @@ import AddImages from "./addImages/AddImages";
 import AddLocation from "./addLocation/AddLocation";
 import { createRoom } from "../../actions/room";
 
-const AddRoom = ({ setPage }) => {
-// const AddRoom = () => {
+const AddRoom = () => {
+  // const AddRoom = ({ setPage }) => {
+  // const AddRoom = () => {
   const {
     // state: { images, details, location },
     state: { images, details, location, currentUser },
@@ -101,7 +102,8 @@ const AddRoom = ({ setPage }) => {
       description: details.description,
       images,
     };
-    createRoom(room, currentUser, dispatch, setPage);
+    createRoom(room, currentUser, dispatch);
+    // createRoom(room, currentUser, dispatch, setPage);
     // createRoom(room, currentUser, dispatch);
   };
 

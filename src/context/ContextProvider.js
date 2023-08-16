@@ -16,13 +16,16 @@ const initialState = {
   images: [],
   details: { title: "", description: "", price: 0 },
   location: { lng: 0, lat: 0 },
-  // location: { lng: 17.966667, lat: 102.6 },
+  updatedRoom: null,
+  deletedImages: [],
+  addedImages: [],
   rooms: [],
   priceFilter: 50,
-  addressFilter: null,  //ສະແດງຊ່ອງຄົ້ນຫາຂໍ້ມູນ ຢູ່ໄຊບາ
-  filteredRooms: [],    //ກອງຂໍ້ມູນໃນແຜນທີ່
+  addressFilter: null, //ສະແດງຊ່ອງຄົ້ນຫາຂໍ້ມູນ ຢູ່ໄຊບາ
+  filteredRooms: [], //ກອງຂໍ້ມູນໃນແຜນທີ່
   room: null,
   users: [],
+  section: 0,
 };
 
 const Context = createContext(initialState);
@@ -34,15 +37,33 @@ export const useValue = () => {
 const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const mapRef = useRef();
-  const containerRef = useRef();  // ສົ່ງຄ່າໄປ Sidebar.js
+  const containerRef = useRef(); // ສົ່ງຄ່າໄປ Sidebar.js
+
   useEffect(() => {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     if (currentUser) {
       dispatch({ type: "UPDATE_USER", payload: currentUser });
     }
   }, []);
+
+  useEffect(() => {
+    if (state.currentUser) {
+      const room = JSON.parse(localStorage.getItem(state.currentUser.id));
+      if (room) {
+        dispatch({ type: "UPDATE_LOCATION", payload: room.location });
+        dispatch({ type: "UPDATE_DETAILS", payload: room.details });
+        dispatch({ type: "UPDATE_IMAGES", payload: room.images });
+        dispatch({ type: "UPDATE_UPDATED_ROOM", payload: room.updatedRoom });
+        dispatch({
+          type: "UPDATE_DELETED_IMAGES",
+          payload: room.deletedImages,
+        });
+        dispatch({ type: "UPDATE_ADDED_IMAGES", payload: room.addedImages });
+      }
+    }
+  }, [state.currentUser]);
+
   return (
-    // <Context.Provider value={{ state, dispatch, mapRef, containerRef }}>
     <Context.Provider value={{ state, dispatch, mapRef, containerRef }}>
       {children}
     </Context.Provider>
