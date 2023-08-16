@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useValue } from '../../context/ContextProvider';
-import { getRooms } from '../../actions/room';
-import ReactMapGL, { Marker, Popup } from 'react-map-gl';
-import Supercluster from 'supercluster';
-import './cluster.css';
-import { Avatar, Paper, Tooltip } from '@mui/material';
-import GeocoderInput from '../sidebar/GeocoderInput';
-import PopupRoom from './PopupRoom';
+import React, { useEffect, useState } from "react";
+import { useValue } from "../../context/ContextProvider";
+import { getRooms } from "../../actions/room";
+import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import Supercluster from "supercluster";
+import "./cluster.css";
+import { Avatar, Paper, Tooltip } from "@mui/material";
+import GeocoderInput from "../sidebar/GeocoderInput";
+import PopupRoom from "./PopupRoom";
 
 const supercluster = new Supercluster({
   radius: 75,
@@ -31,7 +31,7 @@ const ClusterMap = () => {
 
   useEffect(() => {
     const points = filteredRooms.map((room) => ({
-      type: 'Feature',
+      type: "Feature",
       properties: {
         cluster: false,
         roomId: room._id,
@@ -45,7 +45,7 @@ const ClusterMap = () => {
         uName: room.uName,
       },
       geometry: {
-        type: 'Point',
+        type: "Point",
         coordinates: [parseFloat(room.lng), parseFloat(room.lat)],
       },
     }));
@@ -64,9 +64,9 @@ const ClusterMap = () => {
   }, [mapRef?.current]);
   return (
     <ReactMapGL
-      initialViewState={{ latitude: 51.5072, longitude: 0.1276 }}
+      initialViewState={{ latitude: 18.099, longitude: 102.669 }}
       mapboxAccessToken={process.env.REACT_APP_MAP_TOKEN}
-      mapStyle="mapbox://styles/mapbox/streets-v11"
+      mapStyle="mapbox://styles/mapbox/satellite-streets-v12"
       ref={mapRef}
       onZoomEnd={(e) => setZoom(Math.round(e.viewState.zoom))}
     >
