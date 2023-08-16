@@ -45,9 +45,9 @@ const BottomNav = () => {
             dispatch({ type: 'UPDATE_SECTION', payload: newValue })
           }
         >
-          <BottomNavigationAction label="Map" icon={<LocationOn />} />
-          <BottomNavigationAction label="Rooms" icon={<Bed />} />
-          <BottomNavigationAction label="Add" icon={<AddLocationAlt />} />
+          <BottomNavigationAction label="Map ແຜນທີ່" icon={<LocationOn />} />
+          <BottomNavigationAction label="Rooms ຫ້ອງຊຸດ" icon={<Bed />} />
+          <BottomNavigationAction label="Add ເພີ້ມຂໍ້ມູນ" icon={<AddLocationAlt />} />
         </BottomNavigation>
       </Paper>
     </Box>
