@@ -1,5 +1,5 @@
 const fetchData = async (
-  { url, method = 'POST', token = '', body = null },
+  { url='https://msm-33jc.onrender.com', method = 'POST', token = '', body = null },
   dispatch
 ) => {
   const headers = token
