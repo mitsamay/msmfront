@@ -2,7 +2,7 @@ import React from 'react'
 
 const GisMap = () => {
   return (
-    <div>GisMap</div>
+    <div>GisMap ກໍາລັງດໍາເນີນການສ້າງ</div>
   )
 }
 
