@@ -64,7 +64,7 @@ const ClusterMap = () => {
   }, [mapRef?.current]);
   return (
     <ReactMapGL
-      initialViewState={{ latitude: 18.099, longitude: 102.669 }}
+      initialViewState={{ latitude: 18.099, longitude: 102.669, zoom: 5 }}
       mapboxAccessToken={process.env.REACT_APP_MAP_TOKEN}
       mapStyle="mapbox://styles/mapbox/satellite-streets-v12"
       ref={mapRef}
