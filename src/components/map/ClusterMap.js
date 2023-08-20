@@ -67,6 +67,7 @@ const ClusterMap = () => {
       initialViewState={{ latitude: 18.099, longitude: 103.669, zoom: 5 }}
       mapboxAccessToken={process.env.REACT_APP_MAP_TOKEN}
       mapStyle="mapbox://styles/mapbox/satellite-streets-v12"
+      // mapStyle="mapbox://styles/mapbox/streets-v12"
       ref={mapRef}
       onZoomEnd={(e) => setZoom(Math.round(e.viewState.zoom))}
     >
